@@ -16,12 +16,14 @@ const config: PlaywrightTestConfig = {
   // },
 
   use: {
-    trace: "retry-with-trace",
     contextOptions: {
       ignoreHTTPSErrors: true,
     },
     baseURL: "http://localhost:3000",
-    headless: false,
+    headless: true,
+    trace: "retain-on-failure",
+    video: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
 
   projects: [
