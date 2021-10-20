@@ -6,7 +6,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - uses: microsoft/playwright-github-action@v1.5.0
       - name: Install dependencies and run tests
         run: npm install && npm run pw:e2e
