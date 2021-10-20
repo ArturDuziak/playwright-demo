@@ -1,0 +1,16 @@
+name: Playwright E2E Tests
+on: [push]
+jobs:
+  run-playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: microsoft/playwright-github-action@v1.5.0
+      - name: Install dependencies and run tests
+        run: npm install && npm run pw:e2e
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: playwright/tests/test-results
