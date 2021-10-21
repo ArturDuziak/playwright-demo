@@ -1,0 +1,24 @@
+name: Playwright E2E Tests
+on: [push]
+jobs:
+  run-playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - uses: microsoft/playwright-github-action@v1.5.0
+      - name: Install dependencies
+        run: npm ci
+      - name: Install operating system dependencies for Playwright
+        run: npx playwright install --with-deps
+      - name: Run tests
+        run: npm run pw:e2e
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: test-results
+          path: playwright/tests/test-results
+          if-no-files-found: ignore
