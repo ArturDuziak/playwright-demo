@@ -20,5 +20,5 @@ jobs:
         if: ${{ always() }}
         with:
           name: test-results
-          path: playwright/tests/test-results
+          path: playwright/test-results
           if-no-files-found: ignore

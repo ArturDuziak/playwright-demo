@@ -6,7 +6,8 @@ const config: PlaywrightTestConfig = {
   timeout: 30 * 1000,
   testDir: path.join(__dirname, "playwright/tests"),
   retries: 0,
-  outputDir: "test-results/",
+  outputDir: "playwright/test-results/",
+  reporter: "list",
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
@@ -24,6 +25,10 @@ const config: PlaywrightTestConfig = {
     trace: "retain-on-failure",
     video: "retain-on-failure",
     screenshot: "only-on-failure",
+    httpCredentials: {
+      username: "admin",
+      password: "admin",
+    },
   },
 
   projects: [
