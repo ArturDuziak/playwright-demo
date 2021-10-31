@@ -1,5 +1,6 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
+import { playwrightCustomMatchers } from "./playwright-custom-matchers";
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -63,4 +64,7 @@ const config: PlaywrightTestConfig = {
     // },
   ],
 };
+
+playwrightCustomMatchers();
+
 export default config;
