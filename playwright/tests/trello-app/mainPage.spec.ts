@@ -9,12 +9,22 @@ test("Empty main page displays create board option", async ({ page }) => {
 });
 
 test("User can star a board", async ({ page }) => {
-  const boardName = `PlaywrightBoard_${Date.now()}${Math.random()}`;
+  const boardName = `PlaywrightBoard_${Date.now()}`;
   const newBoard = await createBoard(page, boardName);
 
   await page.goto("/");
 
   await expect(page.locator(`text=${boardName}`)).toBeVisible();
 
-  await page.request.delete(`/api/boards/${newBoard.id}`);
+  await page.hover(`text=${boardName}`);
+  await page.click(`[data-cy="board-item"]:has-text("${boardName}") [data-cy="star"]`);
+
+  const numberOfStarredBoards = await page.$$eval(
+    ':text("My Starred") + .board .board_item',
+    (items) => items.length
+  );
+
+  expect(numberOfStarredBoards).toBe(1);
+
+  deleteBoard(page, newBoard.id);
 });
