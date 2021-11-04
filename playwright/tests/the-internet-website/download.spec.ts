@@ -3,6 +3,7 @@ import fs from "fs";
 
 test.use({ acceptDownloads: true });
 test.describe("Test file download", () => {
+  test.fixme();
   test("Checks .txt file", async ({ page }) => {
     await page.goto("http://the-internet.herokuapp.com/download");
 

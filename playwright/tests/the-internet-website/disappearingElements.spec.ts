@@ -4,7 +4,8 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://the-internet.herokuapp.com/disappearing_elements");
 });
 
-test("Check length of elemenst", async ({ page }) => {
+test("Check length of elements", async ({ page }) => {
+  test.fixme();
   await expect(page.locator("ul li")).toHaveCount(5);
 });
 

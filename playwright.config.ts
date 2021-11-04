@@ -1,5 +1,6 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
+import { playwrightCustomMatchers } from "./playwright-custom-matchers";
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -14,6 +15,7 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: "npm run start",
     port: 3000,
+    reuseExistingServer: !process.env.CI,
   },
 
   use: {
@@ -62,4 +64,7 @@ const config: PlaywrightTestConfig = {
     // },
   ],
 };
+
+playwrightCustomMatchers();
+
 export default config;
