@@ -43,3 +43,24 @@ test("User can add tasks to list", async ({ page }) => {
   await expect(boardPage.task.last()).toBeVisible();
   await expect(boardPage.task.last()).toContainText("Second task");
 });
+
+test("User can drag and drop lists to move them", async ({ page }) => {
+  await addListToBoardAPI(page, board.id, "First list");
+  await addListToBoardAPI(page, board.id, "Second list");
+
+  await page.dragAndDrop('[data-cy="list-name"]', '[data-cy="list-name"] >> nth=-1');
+
+  const [response] = await Promise.all([page.waitForResponse("**/api/boards/**"), page.reload()]);
+  const boards = await response.json();
+
+  await expect(boards.lists[0].title).toBe("Second list");
+  await expect(boards.lists[1].title).toBe("First list");
+});
+
+test("User sees an error when there is network error", async ({ page }) => {
+  await page.route("**/api/lists", (route) => route.abort());
+
+  await boardPage.addListToBoard("Fail list");
+
+  await expect(page.locator("#errorMessage")).toBeVisible();
+});
