@@ -6,7 +6,8 @@
   "scripts": {
     "start": "grunt dev && node index.js",
     "cy:open": "npx cypres open",
-    "pw:e2e": "playwright test"
+    "pw:e2e": "playwright test",
+    "pw:e2e:ci": "playwright test --forbid-only"
   },
   "browser": {
     "vue": "vue/dist/vue.common.js"
@@ -16,7 +17,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "@cypress/code-coverage": "^3.8.7",
-    "@playwright/test": "^1.16.3",
+    "@playwright/test": "^1.17.0-rc1",
     "@types/faker": "^5.5.9",
     "@types/node": "^14.14.11",
     "axios": "^0.21.1",

@@ -22,7 +22,7 @@ const config: PlaywrightTestConfig = {
     contextOptions: {
       ignoreHTTPSErrors: true,
     },
-    baseURL: "http://localhost:3000",
+    baseURL: process.env.BASE_URL || "http://localhost:3000",
     headless: true,
     trace: "retain-on-failure",
     video: "retain-on-failure",
@@ -38,6 +38,10 @@ const config: PlaywrightTestConfig = {
       name: "Desktop Chrome",
       use: {
         ...devices["Desktop Chrome"],
+        viewport: {
+          width: 1920,
+          height: 1080
+        }
       },
     },
     // {
