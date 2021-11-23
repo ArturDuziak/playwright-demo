@@ -2,13 +2,13 @@ import { Locator, Page } from "@playwright/test";
 
 export class BoardPage {
   readonly page: Page;
-  readonly newListButton: Locator;
-  readonly listInput: Locator;
-  readonly saveListButton: Locator;
+  private newListButton: Locator;
+  private listInput: Locator;
+  private saveListButton: Locator;
+  private newTaskButton: Locator;
+  private taskInput: Locator;
+  private addTaskButton: Locator;
   readonly listName: Locator;
-  readonly newTaskButton: Locator;
-  readonly taskInput: Locator;
-  readonly addTaskButton: Locator;
   readonly task: Locator;
 
   constructor(page: Page) {
@@ -16,10 +16,10 @@ export class BoardPage {
     this.newListButton = page.locator("[data-cy=add-list]");
     this.listInput = page.locator("[data-cy=add-list-input]");
     this.saveListButton = page.locator("[data-cy=save]");
-    this.listName = page.locator('[data-cy="list-name"]');
     this.newTaskButton = page.locator('[data-cy="new-task"]');
     this.taskInput = page.locator('[data-cy="task-input"]');
     this.addTaskButton = page.locator('[data-cy="add-task"]');
+    this.listName = page.locator('[data-cy="list-name"]');
     this.task = page.locator('[data-cy="task"]');
   }
 
