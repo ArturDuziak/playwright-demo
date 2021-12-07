@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Checks buttons visiblity", async ({ page }) => {
   await page.goto("http://www.uitestingplayground.com/visibility");
 
-  // Playwright isVisble doesn't consider elements with: opacity: 0; / offscreen / overlapped as invisible
+  // Playwright toBeVisible doesn't consider elements with: opacity: 0; / offscreen / overlapped as invisible
 
   const buttons = [
     "#removedButton",

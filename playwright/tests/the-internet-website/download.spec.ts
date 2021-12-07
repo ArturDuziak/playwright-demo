@@ -1,9 +1,13 @@
 import { test, expect } from "@playwright/test";
 import fs from "fs";
 
+// The test is skipped because the files available for download constantly change. 
+// You can enter the page, update the files names in test and run it
+
 test.use({ acceptDownloads: true });
 test.describe("Test file download", () => {
   test.fixme();
+
   test("Checks .txt file", async ({ page }) => {
     await page.goto("http://the-internet.herokuapp.com/download");
 
@@ -14,7 +18,7 @@ test.describe("Test file download", () => {
 
     const path = await download.path();
     const fileBody = fs.readFileSync(path, { encoding: "utf-8" });
-    await expect(fileBody).toBe("text document for cypress tests");
+    expect(fileBody).toBe("text document for cypress tests");
   });
 
   test("Checks JSON file @fast", async ({ page }) => {
