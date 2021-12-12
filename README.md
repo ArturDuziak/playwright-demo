@@ -34,3 +34,4 @@ Example | Description
 [Hover menu](./playwright/tests/the-internet-website/jqueryMenu.spec.ts) | How to handle menu opens more menus on hover
 [Visibility](./playwright/tests/ui-automation-playground/visibility.spec.ts) | Basic explanation of what is considered invisible for Playwright toBeVisible assertion
 [Checking response status](./playwright/tests/ui-automation-playground/statusCodes.spec.ts) | How to intercept an API call and check its status
+[Accessing environment variables](./playwright/tests/environment.spec.ts) | How to access environment variables

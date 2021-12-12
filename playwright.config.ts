@@ -1,6 +1,7 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
 import { playwrightCustomMatchers } from "./playwright-custom-matchers";
+require('dotenv').config({ path: './playwright/.env' });
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
