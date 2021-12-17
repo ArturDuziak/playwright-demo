@@ -8,6 +8,7 @@ const config: PlaywrightTestConfig = {
   timeout: 30 * 1000,
   testDir: path.join(__dirname, "playwright/tests"),
   retries: 0,
+  forbidOnly: !!process.env.CI,
   outputDir: "playwright/test-results/",
   reporter: "list",
 

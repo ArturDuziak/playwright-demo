@@ -18,7 +18,7 @@ jobs:
       - name: Install operating system dependencies for Playwright
         run: npx playwright install --with-deps
       - name: Run tests
-        run: npm run pw:e2e:ci
+        run: npm run pw:e2e
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:

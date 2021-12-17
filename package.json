@@ -6,8 +6,7 @@
   "scripts": {
     "start": "grunt dev && node index.js",
     "cy:open": "npx cypres open",
-    "pw:e2e": "playwright test",
-    "pw:e2e:ci": "playwright test --forbid-only"
+    "pw:e2e": "playwright test"
   },
   "browser": {
     "vue": "vue/dist/vue.common.js"
