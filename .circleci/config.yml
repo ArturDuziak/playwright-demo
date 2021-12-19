@@ -50,7 +50,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
           name: Increment machine index by one
-          command: (($CIRCLE_NODE_INDEX++))
+          command: $CIRCLE_NODE_INDEX=$((CIRCLE_NODE_INDEX++))
       - run: npm run pw:e2e -- --shard $CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL --workers=1
       - store_artifacts:
           path: ~/repo/playwright/test-results
