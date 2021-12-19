@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: mcr.microsoft.com/playwright:v1.17.1-focal
+    resource_class: medium
     environment:
       NODE_ENV: development
     working_directory: ~/repo

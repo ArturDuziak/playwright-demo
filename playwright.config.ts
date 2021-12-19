@@ -53,12 +53,12 @@ const config: PlaywrightTestConfig = {
     //     ...devices["Desktop Firefox"],
     //   },
     // },
-    // {
-    //   name: "Desktop Safari",
-    //   use: {
-    //     ...devices["Desktop Safari"],
-    //   },
-    // },
+    {
+      name: "Desktop Safari",
+      use: {
+        ...devices["Desktop Safari"],
+      },
+    },
     // {
     //   name: "Mobile Chrome",
     //   use: {
