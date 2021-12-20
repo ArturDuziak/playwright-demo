@@ -49,6 +49,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: CIRCLE_NODE_INDEX=$((CIRCLE_NODE_INDEX+1)) && npm run pw:e2e -- --shard $CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL --workers=1
+      - store_test_results:
+          path: test-results
       - store_artifacts:
           path: ~/repo/playwright/test-results
       - store_artifacts:
