@@ -54,7 +54,7 @@ jobs:
       - store_artifacts:
           path: ~/repo/playwright/test-report
       - store_test_results:
-          path: ~/repo/results
+          path: ~/repo/results.xml
 
   test_e2e_parallel_v2:
     docker:
@@ -82,7 +82,7 @@ jobs:
       - store_artifacts:
           path: ~/repo/playwright/test-report
       - store_test_results:
-          path: ~/repo/results
+          path: ~/repo/results.xml
 
 workflows:
   version: 2
