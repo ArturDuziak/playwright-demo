@@ -74,7 +74,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run pw:e2e -- --workers=1 "$(circleci tests glob "playwright/tests/**/*.spec.ts" | circleci tests split --split-by=timings)"
+      - run: npm run pw:e2e -- --workers=1 "$(circleci tests glob "playwright/tests/**/*.spec.ts" | circleci tests split --split-by=timings | paste -sd "," -)"
       - store_artifacts:
           path: ~/repo/playwright/test-results
       - store_artifacts:
