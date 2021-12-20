@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test("Stops progress bar when value reaches 35%", async ({ page }) => {
+test("Stops progress bar when value reaches 35%", async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'Test is flaky on Safari browser');
+
   await page.goto("http://www.uitestingplayground.com/progressbar");
 
   await page.click("#startButton");

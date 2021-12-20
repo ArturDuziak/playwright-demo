@@ -7,4 +7,5 @@ cypress/screenshots
 /public/uploaded/*.jpg
 public/css
 public/js
-test-results/
+playwright/test-results
+playwright/test-report

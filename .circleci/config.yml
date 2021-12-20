@@ -1,0 +1,91 @@
+version: 2.1
+
+# Job without parralism enabled
+jobs:
+  test_e2e:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
+    resource_class: medium
+    environment:
+      NODE_ENV: development
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run pw:e2e
+      - store_artifacts:
+          path: ~/repo/playwright/test-results
+      - store_artifacts:
+          path: ~/repo/playwright/test-report
+
+# Job with parallelism enabled
+  test_e2e_parallel:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
+    parallelism: 3
+    resource_class: medium
+    environment:
+      NODE_ENV: development
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: CIRCLE_NODE_INDEX=$((CIRCLE_NODE_INDEX+1)) && npm run pw:e2e -- --shard $CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL --workers=1
+      - store_artifacts:
+          path: ~/repo/playwright/test-results
+      - store_artifacts:
+          path: ~/repo/playwright/test-report
+      - store_test_results:
+          path: ~/repo/results.xml
+
+  test_e2e_parallel_v2:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.17.1-focal
+    parallelism: 3
+    resource_class: medium
+    environment:
+      NODE_ENV: development
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run pw:e2e -- --workers=1 $(circleci tests glob "playwright/tests/**/*.spec.ts" | circleci tests split --split-by=timings | paste -sd " " -)
+      - store_artifacts:
+          path: ~/repo/playwright/test-results
+      - store_artifacts:
+          path: ~/repo/playwright/test-report
+      - store_test_results:
+          path: ~/repo/results.xml
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test_e2e_parallel_v2

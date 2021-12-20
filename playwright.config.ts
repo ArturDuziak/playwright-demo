@@ -6,10 +6,12 @@ require('dotenv').config({ path: './playwright/.env' });
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
   timeout: 30 * 1000,
-  testDir: path.join(__dirname, "playwright/tests"),
-  retries: 0,
+  testDir: path.join(__dirname, "playwright"),
+  retries: process.env.CI ? 2 : 0,
+  forbidOnly: !!process.env.CI,
   outputDir: "playwright/test-results/",
-  reporter: "list",
+  reporter: process.env.CI ? [ ['html', { outputFolder: 'playwright/test-report/' }], ['junit', { outputFile: 'results.xml' }] ] : "list",
+  workers: process.env.CI ? 2 : undefined,
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
@@ -51,12 +53,12 @@ const config: PlaywrightTestConfig = {
     //     ...devices["Desktop Firefox"],
     //   },
     // },
-    // {
-    //   name: "Desktop Safari",
-    //   use: {
-    //     ...devices["Desktop Safari"],
-    //   },
-    // },
+    {
+      name: "Desktop Safari",
+      use: {
+        ...devices["Desktop Safari"],
+      },
+    },
     // {
     //   name: "Mobile Chrome",
     //   use: {

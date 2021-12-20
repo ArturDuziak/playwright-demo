@@ -44,7 +44,9 @@ test("User can add tasks to list", async ({ page }) => {
   await expect(boardPage.task.last()).toContainText("Second task");
 });
 
-test("User can drag and drop lists to move them", async ({ page }) => {
+test("User can drag and drop lists to move them", async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'Test is flaky on Safari browser');
+
   await addListToBoardAPI(page, board.id, "First list");
   await addListToBoardAPI(page, board.id, "Second list");
 
