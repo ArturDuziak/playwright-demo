@@ -9,3 +9,4 @@ public/css
 public/js
 playwright/test-results
 playwright/test-report
+results.xml
