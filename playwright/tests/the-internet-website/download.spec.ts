@@ -4,6 +4,7 @@ import fs from "fs";
 // The test is skipped because the files available for download constantly change. 
 // You can enter the page, update the files names in test and run it
 
+// Since version 1.18.0 acceptDownloads is set to true by default but I leave it here for history
 test.use({ acceptDownloads: true });
 test.describe("Test file download", () => {
   test.fixme();
