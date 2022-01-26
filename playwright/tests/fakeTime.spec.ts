@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
 
-test('Controlling clock using external package', async ({ context, page }) => {
+test.use({ timezoneId: 'Europe/London' });
+test('Controlling clock using external package', async ({ browserName, context, page }) => {
+  test.skip(browserName == 'webkit', 'addInitScript cannot be used in safari browser');
+
   await context.addInitScript({
     path: path.join(__dirname, '../../', './node_modules/sinon/pkg/sinon.js'),
   });
