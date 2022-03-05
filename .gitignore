@@ -10,3 +10,5 @@ public/js
 playwright/test-results
 playwright/test-report
 results.xml
+test-results/
+playwright-report/
