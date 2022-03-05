@@ -15,15 +15,13 @@ test("Checks buttons visiblity", async ({ page }) => {
     // "#offscreenButton",
   ];
 
-  for (let i = 0; i < buttons.length; i++) {
-    const button = page.locator(buttons[i]);
-    await expect(button).toBeVisible();
+  for (const button of buttons) {
+    await expect(page.locator(button)).toBeVisible();
   }
 
   await page.click("#hideButton");
 
-  for (let i = 0; i < buttons.length; i++) {
-    const button = page.locator(buttons[i]);
-    await expect(button).not.toBeVisible();
+  for (const button of buttons) {
+    await expect(page.locator(button)).not.toBeVisible();
   }
 });

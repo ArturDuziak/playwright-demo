@@ -13,7 +13,7 @@ test('Controlling clock using external package', async ({ browserName, context, 
     window.__clock = sinon.useFakeTimers();
   });
 
-  page.goto('http://time-time.net/timer/digital-clock.php');
+  await page.goto('http://time-time.net/timer/digital-clock.php');
 
   const timer = page.locator('#timenow');
 
