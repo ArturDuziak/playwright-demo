@@ -37,3 +37,4 @@ Example | Description
 [Accessing environment variables](./playwright/tests/environment.spec.ts) | How to access environment variables
 [Modifying styles](./playwright/tests/the-internet-website/modifyStyles.spec.ts) | How to modify CSS of an element
 [Accessing clipboard](./playwright/tests/clipboard.spec.ts) | How to access clipboard using external libraries
+[API Testing](./playwright/tests/apiTesting.spec.ts) | How to write simple API tests 
