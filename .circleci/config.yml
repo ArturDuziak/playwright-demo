@@ -21,7 +21,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run pw:e2e
+      - run: npm run pw:e2e && npx playwright install
       - store_artifacts:
           path: ~/repo/playwright/test-results
       - store_artifacts:
@@ -43,7 +43,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: npm ci
+      - run: npm ci && npx playwright install
       - save_cache:
           paths:
             - node_modules
@@ -71,7 +71,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: npm ci
+      - run: npm ci && npx playwright install
       - save_cache:
           paths:
             - node_modules
