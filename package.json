@@ -47,6 +47,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "nocache": "^2.1.0",
+    "playwright": "^1.21.1",
     "require-uncached": "^2.0.0",
     "sass": "^1.26.8",
     "sendmail": "^1.6.1",
