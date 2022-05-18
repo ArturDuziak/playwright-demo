@@ -27,6 +27,7 @@ Example | Description
 [New window](./playwright/tests/the-internet-website/newWindow.spec.ts) | How to handle links that open in new window
 [Basic auth](./playwright/tests/the-internet-website/basicAuth.spec.ts) | How to handle basic authentication popup
 [File download](./playwright/tests/the-internet-website/download.spec.ts) | How to handle downloading a file
+[Page Objects](./playwright/pages/LoginPage.ts) | Example of page object, [here is how to use it](./playwright/tests/trello-app/login.spec.ts)
 [File upload](./playwright/tests/the-internet-website/fileUpload.spec.ts) | How to upload a file
 [Drag and drop](./playwright/tests/the-internet-website/dragAndDrop.spec.ts) | How to drag and drop elements
 [Hover](./playwright/tests/the-internet-website/hover.spec.ts) | How to hover over an element
