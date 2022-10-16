@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   dynamicControlsPage = new DynamicControlsPage(page);
 });
 
-test("Waits for input to be enabled after clicking the button", async ({ page }) => {
+test("Waits for input to be enabled after clicking the button", async () => {
   await expect(dynamicControlsPage.getTextInput()).toBeDisabled();
 
   dynamicControlsPage.clickDisableEnableTextButton();
@@ -18,7 +18,7 @@ test("Waits for input to be enabled after clicking the button", async ({ page })
   await expect(dynamicControlsPage.getTextInput()).toBeDisabled();
 });
 
-test("Waits for checkbox to disappear after clicking the button", async ({ page }) => {
+test("Waits for checkbox to disappear after clicking the button", async () => {
   await expect(dynamicControlsPage.getCheckbox()).toBeVisible();
 
   dynamicControlsPage.clickRemoveAddCheckboxButton();
@@ -33,7 +33,7 @@ test("Waits for checkbox to disappear after clicking the button", async ({ page 
 class DynamicControlsPage {
   private page: Page;
 
-  constructor(page) {
+  constructor(page: Page) {
     this.page = page;
   }
 

@@ -6,7 +6,7 @@ test.use({
     username: "admin",
     password: "admin",
   }
-})
+});
 test("Checks basic auth configuration on page", async ({ page }) => {
   await page.goto("http://the-internet.herokuapp.com/basic_auth");
 

@@ -1,6 +1,6 @@
 const jsonServer = require('json-server');
 const auth = require('json-server-auth');
-const nocache = require('nocache')
+const nocache = require('nocache');
 
 const server = jsonServer.create();
 

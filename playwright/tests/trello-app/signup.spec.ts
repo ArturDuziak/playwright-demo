@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
   await page.click("text=Sign up here");
 });
 
-test("User can successfully sign up", async ({ page }) => {
+test("User can successfully sign up", async () => {
   const email = faker.internet.email();
   const password = faker.internet.password();
 

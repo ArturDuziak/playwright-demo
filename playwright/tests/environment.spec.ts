@@ -8,6 +8,6 @@ import { expect, test } from "@playwright/test";
 test("Playwright has access to process environment variables", async () => {
   console.log(process.env);
 
-  expect(process.env.EXAMPLE_VARIABLE).toBe('value');
+  expect(process.env.EXAMPLE_VARIABLE).toBe("value");
 });
 

@@ -43,7 +43,7 @@ export class LoginPage {
     await this.logInButton.click();
   }
 
-  async signUp(email: string, password: string, sendWelcomeEmail: boolean = false) {
+  async signUp(email: string, password: string, sendWelcomeEmail = false) {
     await this.signupEmailInput.type(email);
     await this.signupPasswordInput.type(password);
     if (sendWelcomeEmail) await this.welcomeEmailCheckbox.check();

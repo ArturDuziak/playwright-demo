@@ -1,8 +1,7 @@
 
-
 import { test, expect } from "@playwright/test";
 
-const statusCodes = [200, 301, 404, 500]
+const statusCodes = [200, 301, 404, 500];
 
 for (const code of statusCodes) {
   test(`Asserts that ${code} is properly returned`, async ({ page }) => {
@@ -13,6 +12,6 @@ for (const code of statusCodes) {
       page.click(`text=${code}`)
     ]);
 
-    expect(response.status()).toBe(code)
+    expect(response.status()).toBe(code);
   });
 }

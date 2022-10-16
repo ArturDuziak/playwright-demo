@@ -6,5 +6,5 @@ test("Waits for the contenet to load in", async ({ page }) => {
   await page.click("#ajaxButton");
 
   const content = await page.waitForSelector("#content");
-  expect(content).toBeTruthy()
+  expect(content).toBeTruthy();
 });
