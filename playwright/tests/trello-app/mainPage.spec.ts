@@ -1,3 +1,4 @@
+import percySnapshot from "@percy/playwright";
 import { test, expect } from "@playwright/test";
 import { createBoard, deleteBoard } from "../../helpers/boardsAPI";
 
@@ -6,6 +7,15 @@ test("Empty main page displays create board option", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.locator(".board_title")).toHaveText("Create a board...");
+});
+
+test("Empty main page displays correctly @visual", async ({ page }) => {
+  await page.route("**/api/boards", (route) => route.fulfill({ body: JSON.stringify([]) }));
+  await page.goto("/");
+
+  await expect(page.locator(".board_title")).toBeVisible();
+
+  await percySnapshot(page, "Main Page");
 });
 
 test("User can star a board", async ({ page }) => {

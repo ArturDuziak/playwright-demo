@@ -1,3 +1,4 @@
+import percySnapshot from "@percy/playwright";
 import { test, expect } from "@playwright/test";
 import { createUser } from "../../helpers/createUserAPI";
 import { LoginPage } from "../../pages/LoginPage";
@@ -12,6 +13,12 @@ test.beforeEach(async ({ page }) => {
 
   await loginPage.openLoginMenu();
   await page.click("text=Sign up here");
+});
+
+test("Sign Up modal displays correctly @visual", async ({ page }) => {
+  await expect(loginPage.signupButton).toBeVisible();
+
+  await percySnapshot(page, "Sign Up Modal");
 });
 
 test("User can successfully sign up", async () => {

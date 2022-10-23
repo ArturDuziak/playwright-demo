@@ -1,3 +1,4 @@
+import percySnapshot from "@percy/playwright";
 import { test, expect } from "@playwright/test";
 import { createUser } from "../../helpers/createUserAPI";
 import { LoginPage } from "../../pages/LoginPage";
@@ -7,6 +8,15 @@ let loginPage: LoginPage;
 
 test.beforeEach(({ page }) => {
   loginPage = new LoginPage(page);
+});
+
+test("Login modal is properly displayed @visual", async ({ page }) => {
+  await page.goto("/");
+
+  await loginPage.openLoginMenu();
+  await expect(loginPage.loginModal).toBeVisible();
+
+  await percySnapshot(page, "Login Modal");
 });
 
 test("Existing user can log in", async ({ page }) => {
