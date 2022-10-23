@@ -38,14 +38,14 @@ export class LoginPage {
   }
 
   async logIn(email: string, password: string) {
-    await this.loginEmailInput.fill(email);
-    await this.loginPasswordInput.fill(password);
+    await this.loginEmailInput.type(email);
+    await this.loginPasswordInput.type(password);
     await this.logInButton.click();
   }
 
   async signUp(email: string, password: string, sendWelcomeEmail = false) {
-    await this.signupEmailInput.fill(email);
-    await this.signupPasswordInput.fill(password);
+    await this.signupEmailInput.type(email);
+    await this.signupPasswordInput.type(password);
     if (sendWelcomeEmail) await this.welcomeEmailCheckbox.check();
     await this.signupButton.click();
   }
