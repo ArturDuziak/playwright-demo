@@ -48,7 +48,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: CIRCLE_NODE_INDEX=$((CIRCLE_NODE_INDEX+1)) && npm run pw:e2e -- --shard $CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL --workers=1
+      - run: CIRCLE_NODE_INDEX=$((CIRCLE_NODE_INDEX+1)) && npm run pw:e2e -- --shard $CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL
       - store_artifacts:
           path: ~/repo/playwright/test-results
       - store_artifacts:
@@ -76,7 +76,34 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: cd playwright && npm run pw:e2e -- --workers=1 $(circleci tests glob "tests/**/*.spec.ts" | circleci tests split --split-by=timings | paste -sd " " -)
+      - run: cd playwright && npm run pw:e2e -- $(circleci tests glob "tests/**/*.spec.ts" | circleci tests split --split-by=timings | paste -sd " " -)
+      - store_artifacts:
+          path: ~/repo/playwright/test-results
+      - store_artifacts:
+          path: ~/repo/playwright/test-report
+      - store_test_results:
+          path: ~/repo/results.xml
+
+  test_visual_percy:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+    resource_class: medium
+    environment:
+      NODE_ENV: development
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm ci && npx playwright install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run pw:visual:tests:percy
       - store_artifacts:
           path: ~/repo/playwright/test-results
       - store_artifacts:
@@ -89,3 +116,6 @@ workflows:
   build_and_test:
     jobs:
       - test_e2e_parallel_v2
+      - test_visual_percy:
+          requires:
+            - test_e2e_parallel_v2

@@ -19,6 +19,8 @@ To run all the Playwright tests run `npm run pw:e2e` or `npx playwright test`
 To run a specific test run the same script but with path to specific test or folder - for example
  `npm run pw:e2e -- playwright/tests/the-internet-website/newWindow.spec.ts`
 
+To view visual testing results in Percy you can visit [public project dashboard](https://percy.io/1b7c4bad/Playwright-Demo)
+
 ## Links to some code examples
 
 Example | Description
