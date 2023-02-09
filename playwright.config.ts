@@ -12,7 +12,7 @@ const config: PlaywrightTestConfig = {
   retries: process.env.CI ? 2 : 0,
   forbidOnly: !!process.env.CI,
   outputDir: "playwright/test-results/",
-  reporter: process.env.CI ? [["html", { outputFolder: "playwright/test-report/" }], ["junit", { outputFile: "results.xml" }]] : "list",
+  reporter: process.env.CI ? [["html", { outputFolder: "playwright/test-report/" }], ["github"]] : "list",
   workers: process.env.CI ? 1 : "50%",
 
   // Run your local dev server before starting the tests:
