@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   test_e2e:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+      - image: mcr.microsoft.com/playwright:v1.54.1-noble
     resource_class: medium
     environment:
       NODE_ENV: development
@@ -30,7 +30,7 @@ jobs:
 # Job with parallelism enabled
   test_e2e_parallel:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+      - image: mcr.microsoft.com/playwright:v1.54.1-noble
     parallelism: 3
     resource_class: medium
     environment:
@@ -58,7 +58,7 @@ jobs:
 
   test_e2e_parallel_v2:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+      - image: mcr.microsoft.com/playwright:v1.54.1-noble
     parallelism: 3
     resource_class: medium
     environment:
@@ -86,7 +86,7 @@ jobs:
 
   test_visual_percy:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+      - image: mcr.microsoft.com/playwright:v1.54.1-noble
     resource_class: medium
     environment:
       NODE_ENV: development
