@@ -36,6 +36,10 @@ const config: PlaywrightTestConfig = {
       username: "admin",
       password: "admin",
     },
+    extraHTTPHeaders: {
+      // Needed for https://reqres.in/
+      "x-api-key": "reqres-free-v1",
+    }
   },
 
   projects: [
