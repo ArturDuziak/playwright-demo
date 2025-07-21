@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("Waits for the contenet to load in", async ({ page }) => {
+test("Waits for the content to load in", async ({ page }) => {
   await page.goto("http://www.uitestingplayground.com/hiddenlayers");
 
   const greenButton = page.locator("#greenButton");
