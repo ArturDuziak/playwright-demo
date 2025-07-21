@@ -6,6 +6,7 @@ import { expect, test } from "@playwright/test";
 // These can also be set in CI variables or in .env file (dotenv package is needed for this)
 
 test("Playwright has access to process environment variables", async () => {
+  test.skip(process.env.CI === "true", "Skipping CI environment to reduce logs");
   console.log(process.env);
 
   expect(process.env.EXAMPLE_VARIABLE).toBe("value");

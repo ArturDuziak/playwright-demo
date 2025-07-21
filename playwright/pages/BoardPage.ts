@@ -29,13 +29,13 @@ export class BoardPage {
 
   async addListToBoard(listTitle: string) {
     await this.newListButton.click();
-    await this.listInput.type(listTitle);
+    await this.listInput.fill(listTitle);
     await this.saveListButton.click();
   }
 
   async addTaskToList(taskTitle: string, { withKeyPress = false } = {}) {
     await this.newTaskButton.click();
-    await this.taskInput.type(taskTitle);
+    await this.taskInput.fill(taskTitle);
     withKeyPress ? await this.taskInput.press("Enter") : await this.addTaskButton.click();
   }
 }
