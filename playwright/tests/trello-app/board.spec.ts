@@ -1,20 +1,18 @@
 import { test, expect } from "@playwright/test";
 import { BoardPage } from "../../pages/BoardPage";
-import { createBoard, deleteBoard } from "../../helpers/boardsAPI";
-import { addListToBoardAPI } from "../../helpers/listsAPI";
+import { createBoard, resetBoards } from "../../helpers/boardsAPI";
+import { addListToBoard } from "../../helpers/listsAPI";
 
 let boardPage: BoardPage;
 let board: { id: number };
 
 test.beforeEach(async ({ page }) => {
+  await resetBoards(page);
+
   board = await createBoard(page);
   boardPage = new BoardPage(page);
 
   await boardPage.goTo(board.id);
-});
-
-test.afterEach(async ({ page }) => {
-  await deleteBoard(page, board.id);
 });
 
 test("User can add list to a board", async () => {
@@ -30,7 +28,7 @@ test("User can add list to a board", async () => {
 });
 
 test("User can add tasks to list", async ({ page }) => {
-  await addListToBoardAPI(page, board.id, "List for testing");
+  await addListToBoard(page, board.id, "List for testing");
 
   await boardPage.addTaskToList("First task");
 
@@ -47,16 +45,16 @@ test("User can add tasks to list", async ({ page }) => {
 test("User can drag and drop lists to move them", async ({ page, browserName }) => {
   test.skip(browserName === "webkit", "Test is flaky on Safari browser");
 
-  await addListToBoardAPI(page, board.id, "First list");
-  await addListToBoardAPI(page, board.id, "Second list");
+  await addListToBoard(page, board.id, "First list");
+  await addListToBoard(page, board.id, "Second list");
 
   await page.dragAndDrop('[data-cy="list-name"]', '[data-cy="list-name"] >> nth=-1');
 
   const [response] = await Promise.all([page.waitForResponse("**/api/boards/**"), page.reload()]);
   const boards = await response.json();
 
-  await expect(boards.lists[0].title).toBe("Second list");
-  await expect(boards.lists[1].title).toBe("First list");
+  expect(boards.lists[0].title).toBe("Second list");
+  expect(boards.lists[1].title).toBe("First list");
 });
 
 test("User sees an error when there is network error", async ({ page }) => {

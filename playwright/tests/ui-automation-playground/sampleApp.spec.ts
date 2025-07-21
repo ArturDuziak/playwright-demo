@@ -15,8 +15,8 @@ test.describe("Sample app tests", async () => {
   });
 
   test("User can successfully log in", async ({ page }) => {
-    await page.type('[name="UserName"]', "Username");
-    await page.type('[name="Password"]', "pwd");
+    await page.fill('[name="UserName"]', "Username");
+    await page.fill('[name="Password"]', "pwd");
 
     await page.click('text="Log In"');
 
@@ -24,8 +24,8 @@ test.describe("Sample app tests", async () => {
   });
 
   test("User can successfully log out", async ({ page }) => {
-    await page.type('[name="UserName"]', "Username");
-    await page.type('[name="Password"]', "pwd");
+    await page.fill('[name="UserName"]', "Username");
+    await page.fill('[name="Password"]', "pwd");
 
     await page.click('text="Log In"');
     await page.click('text="Log Out"');

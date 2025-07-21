@@ -1,5 +1,12 @@
 import { expect, test } from "@playwright/test";
 
+// Needed for auth after recent changes in the API
+test.use({
+  extraHTTPHeaders: {
+    "x-api-key": "reqres-free-v1",
+  }
+})
+
 test.describe("Basic API tests using Playwright", () => {
   test("Checks types of user body", async ({ request }) => {
     const userResponse = await request.get("https://reqres.in/api/users/2");

@@ -59,6 +59,10 @@ const config: PlaywrightTestConfig = {
       name: "Desktop Safari",
       use: {
         ...devices["Desktop Safari"],
+        viewport: {
+          width: 1920,
+          height: 1080
+        }
       },
     },
     // {

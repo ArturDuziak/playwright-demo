@@ -38,7 +38,7 @@ test.describe("Sign up page", () => {
     const email = faker.internet.email();
     const password = faker.internet.password();
 
-    createUser(page, { email, password });
+    await createUser(page, { email, password });
 
     const [response] = await Promise.all([
       page.waitForResponse("**/signup"),

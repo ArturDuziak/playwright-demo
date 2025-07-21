@@ -1,6 +1,10 @@
 import percySnapshot from "@percy/playwright";
 import { test, expect } from "@playwright/test";
-import { createBoard, deleteBoard } from "../../helpers/boardsAPI";
+import { createBoard, resetBoards } from "../../helpers/boardsAPI";
+
+test.beforeEach(async ({ page }) => {
+  await resetBoards(page);
+});
 
 test("Empty main page displays create board option", async ({ page }) => {
   await page.route("**/api/boards", (route) => route.fulfill({ body: JSON.stringify([]) }));
@@ -20,7 +24,7 @@ test("Empty main page displays correctly @visual", async ({ page }) => {
 
 test("User can star a board", async ({ page }) => {
   const boardName = `PlaywrightBoard_${Date.now()}`;
-  const newBoard = await createBoard(page, boardName);
+  await createBoard(page, boardName);
 
   await page.goto("/");
 
@@ -35,6 +39,4 @@ test("User can star a board", async ({ page }) => {
   );
 
   expect(numberOfStarredBoards).toBe(1);
-
-  deleteBoard(page, newBoard.id);
 });

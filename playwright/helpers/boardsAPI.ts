@@ -9,4 +9,8 @@ const deleteBoard = async (page: Page, id: number) => {
   await page.request.delete(`/api/boards/${id}`);
 };
 
-export { createBoard, deleteBoard };
+const resetBoards = async (page: Page) => {
+  await page.request.delete("/api/boards");
+};
+
+export { createBoard, deleteBoard, resetBoards };
